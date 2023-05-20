@@ -1,0 +1,648 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    background-color: black;
+}
+
+.header {
+    width: auto;
+    height: max-content;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #d9ed92;
+    padding: 10px;
+    display: flex;
+}
+
+.container {
+    column-count: 4;
+    column-gap: 1em;
+}
+
+.logo {
+    font-size: 36px;
+    font-family: 'Poppins', sans-serif;
+    color: #d9ed92;
+}
+
+.post {
+    border: 1px solid white;
+    box-sizing: border-box;
+    height: max-content;
+    padding: 10px;
+    display: inline-block;
+    margin: 0 0 1em;
+    width: 100%;
+}
+
+.postHeader {
+    width: 100%;
+    height: max-content;
+    display: inline-flex;
+    padding: 5px;
+}
+
+.postAccountName {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    margin: auto;
+    margin-left: 2%;
+    cursor: default;
+}
+
+.postImages {
+    width: auto;
+    height: max-content;
+    background-color: #d9ed92;
+    padding: 5px;
+    align-items: center;
+}
+
+.img {
+    width: 100%;
+    margin: auto;
+}
+
+.postInteractions {
+    display: inline-flex;
+    width: 100%;
+    height: max-content;
+    gap: none;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.iconPost {
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+}
+
+.postLikeNumber {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    margin: auto;
+    margin-left: 2%;
+    cursor: none;
+}
+
+.postDescription {
+    width: auto;
+    height: max-content;
+    background-color: #d9ed92;
+    padding: 5px;
+    color: black;
+    font-family: 'Poppins', sans-serif;
+    cursor: default;
+}
+
+.postInfo {
+    margin-top: 2%;
+    width: auto;
+    height: max-content;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    cursor: none;
+}
+
+.welcome {
+    color: black;
+    background-color: #d9ed92;
+    padding: 10px;
+    cursor: default;
+    border: 1px solid white;
+    box-sizing: border-box;
+    height: max-content;
+    display: inline-block;
+    margin: 0 0 1em;
+    width: 100%;
+}
+
+.titleWelcome {
+    color: black;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    font-size: 70px;
+}
+
+.subtitleWelcome {
+    color: black;
+    font-family: 'Poppins', sans-serif;
+    font-size: 50px;
+    font-weight: 500;
+    display: inline-flex;
+}
+
+.welcomeBtn {
+    width: auto;
+    height: auto;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.welcomeImg {
+    width: 50px;
+    height: 50px;
+}
+
+.accountbox {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: auto;
+    height: auto;
+    background-color: rgb(0, 0, 0);
+    padding: 20px;
+    border: 1px solid #d9ed92;
+}
+
+
+.blur {
+    filter: blur(5px);
+}
+
+.accountTop {
+    display: flex;
+    align-items: center;
+    gap: auto;
+}
+
+.accountImg {
+    width: 100px;
+    height: auto;
+    margin: auto;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.accountName {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-size: 24px;
+    margin: auto;
+    margin-left: 0;
+}
+
+.accountMiddle {
+    width: 100%;
+    height: max-content;
+    display: block;
+}
+
+.accountInfo {
+    width: 96%;
+    height: max-content;
+    font-size: larger;
+    border: 1px solid white;
+    border-radius: 12px;
+    background-color: transparent;
+    color: white;
+    padding: 2%;
+    margin: auto;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.accountMessage {
+    font-family: 'Poppins', sans-serif;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+}
+
+.accountModify {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.modifyBtn {
+    background-color: transparent;
+    border: none;
+    float: right;
+    height: 36px;
+    width: max-content;
+    font-size: larger;
+    color: white;
+    cursor: pointer;
+    margin-right: 0;
+    padding: 5px;
+}
+
+.modifyBtnImg {
+    width: 24px;
+    height: auto;
+}
+
+.closeBtn {
+    background-color: transparent;
+    border: none;
+    float: right;
+    height: 36px;
+    width: max-content;
+    font-size: larger;
+    color: white;
+    cursor: pointer;
+    margin-right: 0;
+    padding: 5px;
+}
+
+.closeBtnImg {
+    width: 24px;
+    height: auto;
+}
+
+.headerBtn {
+    width: min-content;
+    height: min-content;
+    margin: auto;
+    display: flex;
+    margin-right: 10px;
+}
+
+.addBtn {
+    border: none;
+    background-color: transparent;
+    height: 36px;
+    width: max-content;
+    font-size: larger;
+    color: white;
+    cursor: pointer;
+    margin-right: 0;
+    padding: 5px;
+}
+
+.addImg {
+    width: 30px;
+    height: 30px;
+}
+
+.accBtn {
+    border: none;
+    background-color: transparent;
+    height: 36px;
+    width: max-content;
+    font-size: larger;
+    color: white;
+    cursor: pointer;
+    margin-right: 0;
+    padding: 5px;
+}
+
+.accImg {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.createPost {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: auto;
+    height: auto;
+    background-color: rgb(0, 0, 0);
+    padding: 20px;
+    border: 1px solid #d9ed92;
+}
+
+.createTitle {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-size: 24px;
+    margin: auto;
+}
+
+.createSubtitle {
+    font-family: 'Poppins', sans-serif;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    cursor: default;
+}
+
+.createUpload {
+    width: 94%;
+    height: max-content;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 14px;
+    padding: 10px;
+    border: 2px dashed #d9ed92;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.uploadIcon {
+    width: 36px;
+    height: auto;
+    margin: auto;
+    cursor: pointer;
+}
+
+#file {
+    display: none;
+}
+
+.createBtnDiv {
+    width: 94%;
+    height: max-content;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 14px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.createBtn {
+    margin: auto;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.createDescription {
+    width: 94%;
+    height: max-content;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 14px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.inputDescription {
+    width: 100%;
+    height: 36px;
+    border: 1px solid #d9ed92;
+    background-color: transparent;
+    border-radius: 14px;
+    color: white;
+    padding: 5px;
+}
+
+.qrcodeBox {
+    color: black;
+    background-color: #d9ed92;
+    padding: 10px;
+    cursor: default;
+    border: 1px solid white;
+    box-sizing: border-box;
+    height: max-content;
+    display: inline-block;
+    margin: 0 0 1em;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.subtitleQr {
+    font-family: 'Poppins', sans-serif;
+    margin: auto;
+    font-weight: 500;
+}
+
+.imageBoxQr {
+    margin: auto;
+    padding: 5px;
+}
+
+.imageQr {
+    width: 60%;
+    height: auto;
+    cursor: pointer;
+}
+
+.titleQr {
+    font-family: 'Poppins', sans-serif;
+    margin: auto;
+    font-weight: 700;
+    font-size: larger;
+}
+
+
+.registerBox {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: auto;
+    height: auto;
+    background-color: rgb(0, 0, 0);
+    padding: 20px;
+    border: 1px solid #d9ed92;
+}
+
+.registerTitle {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-size: 24px;
+    margin: auto;
+}
+
+.registerSubtitle {
+    font-family: 'Poppins', sans-serif;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    cursor: default;
+}
+
+.registerSubtitleCenter {
+    font-family: 'Poppins', sans-serif;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    cursor: default;
+    text-align: center;
+}
+
+.registerData {
+    width: 94%;
+    height: max-content;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 14px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.registerInput {
+    width: 100%;
+    height: 36px;
+    border: 1px solid #d9ed92;
+    background-color: transparent;
+    border-radius: 14px;
+    color: white;
+    padding: 5px;
+}
+
+.registerInputPassword {
+    width: 100%;
+    height: 36px;
+    border: 1px solid #d9ed92;
+    background-color: transparent;
+    border-radius: 14px;
+    color: white;
+    padding: 5px;
+}
+
+
+.registerImg {
+    width: 94%;
+    height: max-content;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 14px;
+    padding: 10px;
+    border: 2px dashed #d9ed92;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#accountImgUpload {
+    display: none;
+}
+
+.registerBtnDiv{
+    text-align: center;
+}
+
+.registerBtn{
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-size: 24px;
+    margin: auto;
+    background-color: transparent;
+    border: 1px solid #d9ed92;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+.registerLoginDiv{
+    text-align: center;
+}
+
+.registerLoginBtn{
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-size: 12px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.viewBtnImg{
+    width: 16px !important;
+    height: auto;
+    background-color: transparent;
+}
+
+.viewBtn{
+    width: max-content;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.registerPassword{
+    display: flex;
+}
+
+.loginBox{
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: auto;
+    height: auto;
+    background-color: rgb(0, 0, 0);
+    padding: 20px;
+    border: 1px solid #d9ed92;
+}
+
+.loginTitle{
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-size: 24px;
+    margin: auto;
+}
+
+.loginSubtitle{
+    font-family: 'Poppins', sans-serif;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    cursor: default;
+}
+
+.loginBtnDiv{
+    text-align: center;
+}
+
+.loginBtn{
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-size: 24px;
+    margin: auto;
+    background-color: transparent;
+    border: 1px solid #d9ed92;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+.loginSignUpBtn{
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-size: 12px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.loginSubtitleCenter{
+    font-family: 'Poppins', sans-serif;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    cursor: default;
+    text-align: center;
+}
+
+.loginData{
+    width: 94%;
+    height: max-content;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 14px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.loginInputPassword{
+    width: 100%;
+    height: 36px;
+    border: 1px solid #d9ed92;
+    background-color: transparent;
+    border-radius: 14px;
+    color: white;
+    padding: 5px;
+}
+

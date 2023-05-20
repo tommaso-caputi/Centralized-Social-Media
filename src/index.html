@@ -1,0 +1,278 @@
+<!DOCTYPE html> <!-- https://github.com/tommaso-caputi/Decentralized-Social-Media -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>CSM</title>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    <script src="js/main.js"></script>
+    <script src="js/graphic.js"></script>
+</head>
+
+<body>
+    <div class="header">
+
+        <div class="logo">
+            <span> CSM </span>
+        </div>
+        <div class="headerBtn">
+            <button class="addBtn">
+                <img src="assets/icons/add.png" alt="aggiungi un post" class="addImg" onclick="showCreateBox()">
+            </button>
+            <button class="accBtn">
+                <img src="assets/icons/user.png" onclick="showAccountBox()" id="account-img1" alt="account icon"
+                    class="accImg">
+            </button>
+        </div>
+    </div>
+
+    <div class="registerBox" style="display: none;">
+        <div class="registerTitle">
+            Sign up
+        </div>
+        <div class="registerSubtitle">
+            Inserisci le credenziali, iscriviti e inizia a pubblicare!
+        </div>
+        <div class="registerData">
+            <div class="registerSubtitle">
+                username
+            </div>
+            <input class="registerInput" type="text" id="registerUsername" required minlength="none" maxlength="16">
+            <br>
+            <div class="registerSubtitle">
+                password
+            </div>
+            <div class="registerPassword">
+                <input class="registerInputPassword" type="password" id="registerPassword" required minlength="10"
+                    maxlength="16">
+                <button class="viewBtn" id="viewPassword" onclick="showPassRegister()">
+                    <img src="assets/icons/view.png" alt="mostra password" class="viewBtnImg">
+                </button>
+            </div>
+        </div>
+
+        <div class="registerSubtitleCenter">
+            immagine profilo
+        </div>
+
+        <div class="registerImg">
+            <label for="accountImgUpload">
+                <img src="assets/icons/upload.png" class="uploadIcon">
+            </label>
+            <input type="file" id="accountImgUpload">
+        </div>
+        <br>
+        <div class="registerBtnDiv">
+            <button class="registerBtn" id="sign-up"> sign up </button>
+        </div>
+        <br>
+        <div class="registerSubtitleCenter">
+            or
+        </div>
+        <div class="registerLoginDiv">
+            <button class="registerLoginBtn" id="log-in-redirect">login</button>
+        </div>
+    </div>
+
+    <!-- login box -->
+
+    <div class="loginBox" style="display: none;">
+        <div class="loginTitle">
+            Login
+        </div>
+        <div class="loginSubtitle">
+            Inserisci le credenziali, iscriviti e inizia a pubblicare!
+        </div>
+        <div class="loginData">
+            <div class="loginSubtitle">
+                username
+            </div>
+            <input class="registerInput" type="text" id="registerUsername" required minlength="none" maxlength="16">
+            <br>
+            <div class="loginSubtitle">
+                password
+            </div>
+            <div class="registerPassword">
+                <input class="loginInputPassword" type="password" id="registerPasswordLogin" required minlength="10"
+                    maxlength="16">
+                <button class="viewBtn" id="viewPasswordLog" onclick="showPassLogin()">
+                    <img src="assets/icons/view.png" alt="mostra password"  id="viewBtnLogin" class="viewBtnImg">
+                </button>
+            </div>
+        </div>
+
+        <br>
+        <div class="loginBtnDiv">
+            <button class="loginBtn" id="sign-up"> login </button>
+        </div>
+        <br>
+        <div class="loginSubtitleCenter">
+            or
+        </div>
+        <div class="registerLoginDiv">
+            <button class="loginSignUpBtn" id="sign-up-redirect">sign up</button>
+        </div>
+    </div>
+
+
+    <div id="accountbox" class="accountbox">
+        <div class="accountTop">
+            <img src="assets/icons/user.png" alt="account icon" class="accountImg" id="account-img2">
+            <span class="accountName" id="account-name">
+                nome account
+            </span>
+            <button class="closeBtn" id="closeBtn" onclick="closeBox()">
+                <img src="assets/icons/close.png" alt="chiudi il box account" class="closeBtnImg">
+            </button>
+        </div>
+        <div class="accountMiddle">
+            <input type="text" id="nickname" class="accountInfo" placeholder="nickname">
+            <input type="text" id="name" class="accountInfo" placeholder="name">
+            <input type="text" id="surname" class="accountInfo" placeholder="surname">
+            <input type="text" id="bio" class="accountInfo" placeholder="bio">
+        </div>
+
+        <span class="accountMessage">
+            modifica le tue informazioni e poi clicca sul bottone per la modifica
+        </span>
+        <div class="accountModify">
+            <button id="search" class="modifyBtn" onclick="updateAccountORRegistation()">
+                <img src="assets/icons/modify.png" alt="modify" class="modifyBtnImg">
+            </button>
+        </div>
+    </div>
+
+    <div id="createPost" class="createPost">
+        <div class="createTitle">
+            New Post
+            <button class="closeBtn" id="closeBtn" onclick="closeBoxPost()">
+                <img src="assets/icons/close.png" alt="chiudi il box account" class="closeBtnImg">
+            </button>
+        </div>
+        <div class="createSubtitle">
+            carica una foto dal pc o crea un post con solo un commento
+        </div>
+        <div class="createUpload">
+            <label for="file">
+                <img src="assets/icons/upload.png" class="uploadIcon">
+            </label>
+            <input type="file" id="file">
+        </div>
+        <div class="createSubtitle">
+            inserici la descrizione
+        </div>
+        <div class="createDescription">
+            <input class="inputDescription" type="text" id="description" required minlength="10" maxlength="250">
+            <div class="createSubtitle">
+                max 250
+            </div>
+        </div>
+        <div class="createSubtitle">
+            controlla le modifiche e pubblica il post
+        </div>
+        <div class="createBtnDiv">
+            <button class="createBtn" onclick="generatePost()">
+                <img src="assets/icons/add.png" alt="aggiungi un post" class="addImg">
+            </button>
+        </div>
+    </div>
+
+    <div id="container" class="container">
+
+        <div class="welcome" id="welcome">
+            <div class="titleWelcome">
+                Ciao User,
+            </div>
+            <div class="titleWelcome">
+                ci hai scoperto
+            </div>
+            <div class="subtitleWelcome">
+                inizia a pubblicare
+                <button class="welcomeBtn">
+                    <img src="assets/icons/right-arrow.png" onclick="showAccountBox()" alt="go button"
+                        class="welcomeImg">
+                </button>
+            </div>
+        </div>
+        <!-- <a href="https://github.com/tommaso-caputi/Cecentralized-Social-Media">
+            <div class="qrcodeBox" id="qrcodeBox">
+                <div class="titleQr">
+                    Our project.
+                </div>
+                <div class="imageBoxQr">
+                    <img src="assets/images/qr-code.png" alt="qr it hub" class="imageQr">
+                </div>
+                <div class="subtitleQr">
+                    scan me
+                </div>
+            </div>
+
+        </a> -->
+        <!--
+        <div class="post">
+            <div class="postHeader">
+                <span class="postAccountImg">
+                    <img src="assets/icons/user.png" alt="account icon" class="iconPost">
+                </span>
+                <span class="postAccountName">
+                    nome account
+                </span>
+            </div>
+            <div class="postImages">
+                <img src="assets/images/sample.jpg" alt="Immagine post" class="img">
+            </div>
+            <div class="postInteractions">
+                <span class="postLike">
+                    <img src="assets/icons/likeEmp.png" alt="like icon" class="iconPost">
+                </span>
+                <span class="postLikeNumber">
+                    70
+                </span>
+                <span class="postShare">
+                    <img src="assets/icons/share.png" alt="share icon" class="iconPost">
+                </span>
+            </div>
+            <div class="postDescription">
+                descrizione post
+            </div>
+            <div class="postInfo">
+                <span> 01-01-2023</span>
+            </div>
+        </div>
+
+        <div class="post">
+            <div class="postHeader">
+                <span class="postAccountImg">
+                    <img src="assets/icons/user.png" alt="account icon" class="iconPost">
+                </span>
+                <span class="postAccountName">
+                    nome account
+                </span>
+            </div>
+            <div class="postDescription">
+                descrizione post
+            </div>
+            <div class="postInteractions">
+                <span class="postLike">
+                    <img src="assets/icons/likeEmp.png" alt="like icon" class="iconPost">
+                </span>
+                <span class="postLikeNumber">
+                    70
+                </span>
+                <span class="postShare">
+                    <img src="assets/icons/share.png" alt="share icon" class="iconPost">
+                </span>
+            </div>
+            <div class="postInfo">
+                <span> 01-01-2023</span>
+            </div>
+        </div> -->
+
+    </div>
+
+</body>
+
+</html>
