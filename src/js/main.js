@@ -146,23 +146,37 @@ const generatePost = () => {
     const file = fileInput.files[0];
     var reader = new FileReader();
     reader.onloadend = function () {
-        var imageData = reader.result;
+        windows.imageData = reader.result;
+    }
+    if (file) {
+        reader.readAsDataURL(file);
         //invio post al database
         let temp = [JSON.parse(localStorage.getItem('userData')).nickname, document.getElementById('description').value, getCurrentDate()]
         richiestaApi({
             "comando": "nuovoPost",
             "nickname": temp[0],
             "descrizione": temp[1],
-            "img": imageData,
+            "img": window.imageData,
             "data": temp[2]
         }).then(res => {
             alert(res)
             closeBoxPost()
             location.reload()
         })
-    }
-    if (file) {
-        reader.readAsDataURL(file);
+    } else {
+        //invio post al database
+        let temp = [JSON.parse(localStorage.getItem('userData')).nickname, document.getElementById('description').value, getCurrentDate()]
+        richiestaApi({
+            "comando": "nuovoPost",
+            "nickname": temp[0],
+            "descrizione": temp[1],
+            "img": ".",
+            "data": temp[2]
+        }).then(res => {
+            alert(res)
+            closeBoxPost()
+            location.reload()
+        })
     }
 }
 
