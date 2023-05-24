@@ -1,4 +1,5 @@
 window.onload = async () => {
+    document.getElementById("container").classList.add("blur")
     getPosts()
 };
 
@@ -113,8 +114,12 @@ const register = () => {
         "bio": "bio",
         "img": "."
     }).then(res => {
-        getData(document.getElementById('registerUsername').value, document.getElementById('registerPassword').value)
-        document.getElementById('register-box').style.display = 'none';
+        alert(res)
+        if (res[0] != "N") {
+            getData(document.getElementById('registerUsername').value, document.getElementById('registerPassword').value)
+            document.getElementById('register-box').style.display = 'none';
+            document.getElementById("container").classList.remove('blur')
+        }
     })
 }
 
@@ -130,6 +135,7 @@ const login = () => {
             getData(document.getElementById('loginUsername').value, document.getElementById('loginPassword').value);
             alert('Login effetuato con successo');
             document.getElementById('login-box').style.display = 'none';
+            document.getElementById("container").classList.remove('blur')
         } else {
             alert('Username o password errati');
         }
@@ -160,7 +166,9 @@ const nuovoLike = (postId) => {
         "nickname": document.getElementById('loginUsername').value
     }).then(res => {
         alert(res)
-        location.reload()
+        if (res != "Like giá registrato") {
+            location.reload()
+        }
     });
 }
 
