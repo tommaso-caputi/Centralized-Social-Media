@@ -32,7 +32,6 @@ const showPost = (postId, accountName, postDescription, postImage, postDate, lik
         </div>
         `;
     } else {
-        //da modificare per l' immagine
         postDiv.innerHTML = `
         <div class="post">
           <div class="postHeader">
@@ -42,7 +41,7 @@ const showPost = (postId, accountName, postDescription, postImage, postDate, lik
             <span class="postAccountName">${accountName}</span>
           </div>
           <div class="postImages">
-                <img src="assets/images/sample.jpg" alt="Immagine post" class="img">
+                <img src="${postImage}" alt="Immagine post" class="img">
             </div>
           <div class="postInteractions">
             <span class="postLike">
@@ -71,7 +70,6 @@ const getPosts = () => {
         let temp = res.split("|!|");
         for (let i = 0; i < temp.length - 1; i++) {
             let temp2 = temp[i].split("||")
-            console.log(temp2)
             showPost(temp2[0], temp2[1], temp2[2], temp2[3], temp2[4], temp2[5])
         }
     })
@@ -144,18 +142,28 @@ const login = () => {
 
 //funzione per generare post
 const generatePost = () => {
-    let temp = [JSON.parse(localStorage.getItem('userData')).nickname, document.getElementById('description').value, getCurrentDate()]
-    richiestaApi({
-        "comando": "nuovoPost",
-        "nickname": temp[0],
-        "descrizione": temp[1],
-        "img": ".",
-        "data": temp[2]
-    }).then(res => {
-        alert(res)
-        closeBoxPost()
-        location.reload()
-    })
+    const fileInput = document.getElementById('file')
+    const file = fileInput.files[0];
+    var reader = new FileReader();
+    reader.onloadend = function () {
+        var imageData = reader.result;
+        //invio post al database
+        let temp = [JSON.parse(localStorage.getItem('userData')).nickname, document.getElementById('description').value, getCurrentDate()]
+        richiestaApi({
+            "comando": "nuovoPost",
+            "nickname": temp[0],
+            "descrizione": temp[1],
+            "img": imageData,
+            "data": temp[2]
+        }).then(res => {
+            alert(res)
+            closeBoxPost()
+            location.reload()
+        })
+    }
+    if (file) {
+        reader.readAsDataURL(file);
+    }
 }
 
 //funzione per aggiungere like
