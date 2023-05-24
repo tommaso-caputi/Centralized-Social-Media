@@ -4,8 +4,7 @@ window.onload = async () => {
 
 
 //funzioni per mostrare post
-const showPost = (accountName, postDescription, postImage, postDate) => {
-    const likeCount = 0; //da ottenere
+const showPost = (postId, accountName, postDescription, postImage, postDate, likes) => {
     const postDiv = document.createElement('div');
     if (postImage == '.') {
         postDiv.innerHTML = `
@@ -19,9 +18,9 @@ const showPost = (accountName, postDescription, postImage, postDate) => {
           <div class="postDescription">${postDescription}</div>
           <div class="postInteractions">
             <span class="postLike">
-              <img src="assets/icons/likeEmp.png" alt="like icon" class="iconPost">
+              <img onClick="nuovoLike(${postId})" src="assets/icons/likeEmp.png" alt="like icon" class="iconPost">
             </span>
-            <span class="postLikeNumber">${likeCount}</span>
+            <span class="postLikeNumber">${likes}</span>
             <span class="postShare">
               <img src="assets/icons/share.png" alt="like icon" class="iconPost">
             </span>
@@ -46,9 +45,9 @@ const showPost = (accountName, postDescription, postImage, postDate) => {
             </div>
           <div class="postInteractions">
             <span class="postLike">
-              <img src="assets/icons/likeEmp.png" alt="like icon" class="iconPost">
+              <img onClick="nuovoLike(${postId})" src="assets/icons/likeEmp.png" alt="like icon" class="iconPost">
             </span>
-            <span class="postLikeNumber">${likeCount}</span>
+            <span class="postLikeNumber">${likes}</span>
             <span class="postShare">
               <img src="assets/icons/share.png" alt="like icon" class="iconPost">
             </span>
@@ -66,12 +65,13 @@ const showPost = (accountName, postDescription, postImage, postDate) => {
 //funzione per ottenere tutti i post
 const getPosts = () => {
     richiestaApi({
-        "comando": "getPosts"
+        "comando": "getPostsWithLikes"
     }).then(res => {
         let temp = res.split("|!|");
         for (let i = 0; i < temp.length - 1; i++) {
             let temp2 = temp[i].split("||")
-            showPost(temp2[1], temp2[2], temp2[3], temp2[4])
+            console.log(temp2)
+            showPost(temp2[0], temp2[1], temp2[2], temp2[3], temp2[4], temp2[5])
         }
     })
 }
@@ -112,10 +112,10 @@ const register = () => {
         "cognome": "cognome",
         "bio": "bio",
         "img": "."
+    }).then(res => {
+        getData(document.getElementById('registerUsername').value, document.getElementById('registerPassword').value)
+        document.getElementById('register-box').style.display = 'none';
     })
-    alert('Registrazione effetuata con successo')
-    nickname = document.getElementById('registerUsername').value;
-    document.getElementById('register-box').style.display = 'none';
 }
 
 
@@ -136,6 +136,35 @@ const login = () => {
     });
 }
 
+//funzione per generare post
+const generatePost = () => {
+    let temp = [JSON.parse(localStorage.getItem('userData')).nickname, document.getElementById('description').value, getCurrentDate()]
+    richiestaApi({
+        "comando": "nuovoPost",
+        "nickname": temp[0],
+        "descrizione": temp[1],
+        "img": ".",
+        "data": temp[2]
+    }).then(res => {
+        alert(res)
+        closeBoxPost()
+        location.reload()
+    })
+}
+
+//funzione per aggiungere like
+const nuovoLike = (postId) => {
+    richiestaApi({
+        "comando": "nuovoLike",
+        "id_post": postId,
+        "nickname": document.getElementById('loginUsername').value
+    }).then(res => {
+        alert(res)
+        location.reload()
+    });
+}
+
+
 
 //funzione per richieste http all'api del database 
 const richiestaApi = (json) => {
@@ -147,4 +176,18 @@ const richiestaApi = (json) => {
         body: JSON.stringify(json),
         redirect: 'follow'
     }).then(response => { return response.text() })
+}
+
+
+
+
+//utils functions
+
+const getCurrentDate = () => {
+    const currentDate = new Date();
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const year = currentDate.getFullYear();
+    const formattedDate = `${day}-${month}-${year}`;
+    return formattedDate
 }
