@@ -16,8 +16,6 @@ function showAccountBox() {
         container.classList.remove("blur");
         open = true;
     }
-
-    getData();
 }
 
 //close the accountbox clicking the x button
