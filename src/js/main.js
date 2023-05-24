@@ -1,8 +1,38 @@
+let nickname = '';
+
 window.onload = async () => {
-
-    document.getElementById("login-box");
-
 };
+
+const getData = () => {
+    console.log(nickname);
+    richiestaApi({
+        "comando": "getData",
+        "nickname": nickname
+    })
+}
+
+const register = () => {
+    richiestaApi({
+        "comando": "nuovoUtente",
+        "nickname": document.getElementById('registerUsername').value,
+        "password": document.getElementById('registerPassword').value,
+        "nome": ".",
+        "cognome": ".",
+        "bio": ".",
+        "img": "."
+    })
+    nickname = document.getElementById('registerUsername').value;
+    document.getElementById('register-box').style.display = 'none';
+}
+
+const login = () => {
+    /* richiestaApi({
+        "comando": "checkUtente",
+        "nickname": document.getElementById('loginUsername').value,
+        "password": document.getElementById('loginPassword').value
+    }); */
+    document.getElementById('login-box').style.display = 'none';
+}
 
 const richiestaApi = (json) => {
     var myHeaders = new Headers();

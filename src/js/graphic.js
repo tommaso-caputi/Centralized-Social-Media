@@ -17,6 +17,7 @@ function showAccountBox() {
         open = true;
     }
 
+    getData();
 }
 
 //close the accountbox clicking the x button
@@ -102,7 +103,7 @@ function showPassRegister() {
 //show and hide the password during the login process 
 
 function showPassLogin() {
-    var passwordInput = document.getElementById('registerPasswordLogin');
+    var passwordInput = document.getElementById('loginPassword');
     var viewBtnImg = document.getElementById('viewBtnLogin');
 
     if (passwordInput.type === 'password') {
