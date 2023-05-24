@@ -115,3 +115,17 @@ function showPassLogin() {
         viewBtnImg.alt = 'mostra password';
     }
 }
+
+//show register and hide login
+
+function showRegisterBox() {
+    document.getElementById('login-box').style.display = 'none';
+    document.getElementById('register-box').style.display = 'block';
+}
+
+//show login box and hide register
+
+function showLoginBox() {
+    document.getElementById('login-box').style.display = 'block';
+    document.getElementById('register-box').style.display = 'none';
+}

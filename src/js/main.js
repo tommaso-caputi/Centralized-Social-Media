@@ -4,7 +4,6 @@ window.onload = async () => {
 
 };
 
-
 const richiestaApi = (json) => {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
